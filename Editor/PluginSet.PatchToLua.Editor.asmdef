@@ -1,0 +1,22 @@
+{
+    "name": "PluginSet.PatchToLua.Editor",
+    "references": [
+        "PluginSet.Core.Editor",
+        "PluginSet.Core",
+        "PluginSet.PatchToLua",
+        "PluginSet.Tolua.Editor",
+        "PluginSet.Patch",
+        "PluginSet.Tolua"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

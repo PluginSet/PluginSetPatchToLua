@@ -1,0 +1,17 @@
+{
+    "name": "PluginSet.PatchToLua",
+    "references": [
+        "PluginSet.Core",
+        "PluginSet.Patch",
+        "PluginSet.Tolua"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
