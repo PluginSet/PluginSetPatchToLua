@@ -11,6 +11,7 @@ public class PluginSet_Patch_PatchesDownloaderWrap
 	public static void Register(LuaState L)
 	{
 		L.BeginClass(typeof(PluginSet.Patch.PatchesDownloader), typeof(System.Object));
+		L.RegFunction("SetTaskProgressUpdate", SetTaskProgressUpdate);
 		L.RegFunction("SetAutoRetry", SetAutoRetry);
 		L.RegFunction("OnProgress", OnProgress);
 		L.RegFunction("PrepareDownload", PrepareDownload);
@@ -84,6 +85,23 @@ public class PluginSet_Patch_PatchesDownloaderWrap
 			{
 				return LuaDLL.luaL_throw(L, "invalid arguments to ctor method: PluginSet.Patch.PatchesDownloader.New");
 			}
+		}
+		catch (Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e);
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int SetTaskProgressUpdate(IntPtr L)
+	{
+		try
+		{
+			ToLua.CheckArgsCount(L, 2);
+			PluginSet.Patch.PatchesDownloader obj = (PluginSet.Patch.PatchesDownloader)ToLua.CheckObject<PluginSet.Patch.PatchesDownloader>(L, 1);
+			System.Action<int,int> arg0 = (System.Action<int,int>)ToLua.CheckDelegate<System.Action<int,int>>(L, 2);
+			obj.SetTaskProgressUpdate(arg0);
+			return 0;
 		}
 		catch (Exception e)
 		{

@@ -33,6 +33,7 @@ namespace PluginSet.PatchToLua.LuaWrap
 			L.RegFunction("Action_PluginSet_Patch_PatchesDownloader", System_Action_PluginSet_Patch_PatchesDownloader);
 			L.RegFunction("Action_PluginSet_Patch_FileDownloader_string", System_Action_PluginSet_Patch_FileDownloader_string);
 			L.RegFunction("Action_PluginSet_Patch_FileDownloader", System_Action_PluginSet_Patch_FileDownloader);
+			L.RegFunction("Action_int_int", System_Action_int_int);
 			L.EndModule();
 			L.EndModule();
 			Debugger.Log("Register lua type cost time: {0}", Time.realtimeSinceStartup - t);
@@ -136,6 +137,33 @@ namespace PluginSet.PatchToLua.LuaWrap
 				{
 					LuaTable self = ToLua.CheckLuaTable(L, 2);
 					Delegate arg1 = DelegateTraits<System.Action<PluginSet.Patch.FileDownloader>>.Create(func, self);
+					ToLua.Push(L, arg1);
+				}
+				return 1;
+			}
+			catch(Exception e)
+			{
+				return LuaDLL.toluaL_exception(L, e);
+			}
+		}
+
+		[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+		static int System_Action_int_int(IntPtr L)
+		{
+			try
+			{
+				int count = LuaDLL.lua_gettop(L);
+				LuaFunction func = ToLua.CheckLuaFunction(L, 1);
+
+				if (count == 1)
+				{
+					Delegate arg1 = DelegateTraits<System.Action<int,int>>.Create(func);
+					ToLua.Push(L, arg1);
+				}
+				else
+				{
+					LuaTable self = ToLua.CheckLuaTable(L, 2);
+					Delegate arg1 = DelegateTraits<System.Action<int,int>>.Create(func, self);
 					ToLua.Push(L, arg1);
 				}
 				return 1;

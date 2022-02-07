@@ -4,7 +4,7 @@ using PluginSet.Patch;
 
 namespace PluginSet.PatchToLua.Editor
 {
-    [ToLuaGenerateSetting("PluginSet.PatchToLua.LuaWrap" ," PatchWraps", "com.pluginset.patchtolua", -999998)]
+    [ToLuaGenerateSetting("PluginSet.PatchToLua.LuaWrap" ,"PatchWraps", "com.pluginset.patchtolua", -999998)]
     public static class PatchToLuaExportSetting
     {
         //导出时强制做为静态类的类型(注意customTypeList 还要添加这个类型才能导出)

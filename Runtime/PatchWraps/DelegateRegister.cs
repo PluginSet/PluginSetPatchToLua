@@ -15,21 +15,25 @@ namespace PluginSet.PatchToLua.LuaWrap
 			dict.Add(typeof(System.Action<PluginSet.Patch.PatchesDownloader>), System_Action_PluginSet_Patch_PatchesDownloader);
 			dict.Add(typeof(System.Action<PluginSet.Patch.FileDownloader,string>), System_Action_PluginSet_Patch_FileDownloader_string);
 			dict.Add(typeof(System.Action<PluginSet.Patch.FileDownloader>), System_Action_PluginSet_Patch_FileDownloader);
+			dict.Add(typeof(System.Action<int,int>), System_Action_int_int);
 
 			DelegateTraits<System.Action<float>>.Init(System_Action_float);
 			DelegateTraits<System.Action<PluginSet.Patch.PatchesDownloader>>.Init(System_Action_PluginSet_Patch_PatchesDownloader);
 			DelegateTraits<System.Action<PluginSet.Patch.FileDownloader,string>>.Init(System_Action_PluginSet_Patch_FileDownloader_string);
 			DelegateTraits<System.Action<PluginSet.Patch.FileDownloader>>.Init(System_Action_PluginSet_Patch_FileDownloader);
+			DelegateTraits<System.Action<int,int>>.Init(System_Action_int_int);
 
 			TypeTraits<System.Action<float>>.Init(Check_System_Action_float);
 			TypeTraits<System.Action<PluginSet.Patch.PatchesDownloader>>.Init(Check_System_Action_PluginSet_Patch_PatchesDownloader);
 			TypeTraits<System.Action<PluginSet.Patch.FileDownloader,string>>.Init(Check_System_Action_PluginSet_Patch_FileDownloader_string);
 			TypeTraits<System.Action<PluginSet.Patch.FileDownloader>>.Init(Check_System_Action_PluginSet_Patch_FileDownloader);
+			TypeTraits<System.Action<int,int>>.Init(Check_System_Action_int_int);
 
 			StackTraits<System.Action<float>>.Push = Push_System_Action_float;
 			StackTraits<System.Action<PluginSet.Patch.PatchesDownloader>>.Push = Push_System_Action_PluginSet_Patch_PatchesDownloader;
 			StackTraits<System.Action<PluginSet.Patch.FileDownloader,string>>.Push = Push_System_Action_PluginSet_Patch_FileDownloader_string;
 			StackTraits<System.Action<PluginSet.Patch.FileDownloader>>.Push = Push_System_Action_PluginSet_Patch_FileDownloader;
+			StackTraits<System.Action<int,int>>.Push = Push_System_Action_int_int;
 		}
 		class System_Action_float_Event : LuaDelegate
 		{
@@ -257,6 +261,65 @@ namespace PluginSet.PatchToLua.LuaWrap
 		}
 
 		void Push_System_Action_PluginSet_Patch_FileDownloader(IntPtr L, System.Action<PluginSet.Patch.FileDownloader> o)
+		{
+			ToLua.Push(L, o);
+		}
+
+		class System_Action_int_int_Event : LuaDelegate
+		{
+			public System_Action_int_int_Event(LuaFunction func) : base(func) { }
+			public System_Action_int_int_Event(LuaFunction func, LuaTable self) : base(func, self) { }
+
+			public void Call(int param0, int param1)
+			{
+				func.BeginPCall();
+				func.Push(param0);
+				func.Push(param1);
+				func.PCall();
+				func.EndPCall();
+			}
+
+			public void CallWithSelf(int param0, int param1)
+			{
+				func.BeginPCall();
+				func.Push(self);
+				func.Push(param0);
+				func.Push(param1);
+				func.PCall();
+				func.EndPCall();
+			}
+		}
+
+		public System.Action<int,int> System_Action_int_int(LuaFunction func, LuaTable self, bool flag)
+		{
+			if (func == null)
+			{
+				System.Action<int,int> fn = delegate(int param0, int param1) { };
+				return fn;
+			}
+
+			if(!flag)
+			{
+				System_Action_int_int_Event target = new System_Action_int_int_Event(func);
+				System.Action<int,int> d = target.Call;
+				target.method = d.Method;
+				return d;
+			}
+			else
+			{
+				System_Action_int_int_Event target = new System_Action_int_int_Event(func, self);
+				System.Action<int,int> d = target.CallWithSelf;
+				target.method = d.Method;
+				return d;
+			}
+		}
+
+		bool Check_System_Action_int_int(IntPtr L, int pos)
+		{
+			return TypeChecker.CheckDelegateType(typeof(System.Action<int,int>), L, pos);
+		}
+
+		void Push_System_Action_int_int(IntPtr L, System.Action<int,int> o)
 		{
 			ToLua.Push(L, o);
 		}
