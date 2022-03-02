@@ -11,9 +11,29 @@ public class PluginSet_Patch_PatchResourcesManagerWrap
 	public static void Register(LuaState L)
 	{
 		L.BeginStaticLibs("PatchResourcesManager");
+		L.RegFunction("ExistsAsset", ExistsAsset);
 		L.RegVar("RunningVersion", get_RunningVersion, null);
 		L.RegVar("StreamingAssetsName", get_StreamingAssetsName, null);
 		L.EndStaticLibs();
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int ExistsAsset(IntPtr L)
+	{
+		try
+		{
+			ToLua.CheckArgsCount(L, 3);
+			PluginSet.Patch.PatchResourcesManager obj = (PluginSet.Patch.PatchResourcesManager)ToLua.CheckObject<PluginSet.Patch.PatchResourcesManager>(L, 1);
+			string arg0 = ToLua.CheckString(L, 2);
+			string arg1 = ToLua.CheckString(L, 3);
+			bool o = obj.ExistsAsset(arg0, arg1);
+			LuaDLL.lua_pushboolean(L, o);
+			return 1;
+		}
+		catch (Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e);
+		}
 	}
 
 	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]

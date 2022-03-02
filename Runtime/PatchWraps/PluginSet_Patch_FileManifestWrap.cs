@@ -26,6 +26,7 @@ public class PluginSet_Patch_FileManifestWrap
 		L.RegFunction("__tostring", ToLua.op_ToString);
 		L.RegVar("Name", get_Name, null);
 		L.RegVar("Version", get_Version, null);
+		L.RegVar("IsEmpty", get_IsEmpty, null);
 		L.RegVar("SubPatches", get_SubPatches, null);
 		L.RegVar("Manifest", get_Manifest, null);
 		L.RegVar("Buffer", get_Buffer, null);
@@ -289,6 +290,25 @@ public class PluginSet_Patch_FileManifestWrap
 		catch(Exception e)
 		{
 			return LuaDLL.toluaL_exception(L, e, o, "attempt to index Version on a nil value");
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int get_IsEmpty(IntPtr L)
+	{
+		object o = null;
+
+		try
+		{
+			o = ToLua.ToObject(L, 1);
+			PluginSet.Patch.FileManifest obj = (PluginSet.Patch.FileManifest)o;
+			bool ret = obj.IsEmpty;
+			LuaDLL.lua_pushboolean(L, ret);
+			return 1;
+		}
+		catch(Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e, o, "attempt to index IsEmpty on a nil value");
 		}
 	}
 
