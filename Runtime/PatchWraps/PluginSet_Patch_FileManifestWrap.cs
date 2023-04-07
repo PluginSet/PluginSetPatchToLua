@@ -26,6 +26,7 @@ public class PluginSet_Patch_FileManifestWrap
 		L.RegFunction("__tostring", ToLua.op_ToString);
 		L.RegVar("Name", get_Name, null);
 		L.RegVar("Version", get_Version, null);
+		L.RegVar("Tag", get_Tag, null);
 		L.RegVar("IsEmpty", get_IsEmpty, null);
 		L.RegVar("SubPatches", get_SubPatches, null);
 		L.RegVar("Manifest", get_Manifest, null);
@@ -290,6 +291,25 @@ public class PluginSet_Patch_FileManifestWrap
 		catch(Exception e)
 		{
 			return LuaDLL.toluaL_exception(L, e, o, "attempt to index Version on a nil value");
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int get_Tag(IntPtr L)
+	{
+		object o = null;
+
+		try
+		{
+			o = ToLua.ToObject(L, 1);
+			PluginSet.Patch.FileManifest obj = (PluginSet.Patch.FileManifest)o;
+			string ret = obj.Tag;
+			LuaDLL.lua_pushstring(L, ret);
+			return 1;
+		}
+		catch(Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e, o, "attempt to index Tag on a nil value");
 		}
 	}
 
