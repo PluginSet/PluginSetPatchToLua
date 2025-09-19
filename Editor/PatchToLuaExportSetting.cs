@@ -4,7 +4,7 @@ using PluginSet.Patch;
 
 namespace PluginSet.PatchToLua.Editor
 {
-    [ToLuaGenerateSetting("PluginSet.PatchToLua.LuaWrap" ,"PatchWraps", "com.pluginset.patchtolua", -999998)]
+    [ToLuaGenerateSetting("PluginSet.PatchToLua.LuaWrap" ,"Scripts/ToLuaWrapper/Patch", "com.pluginset.patchtolua", -999998)]
     public static class PatchToLuaExportSetting
     {
         //导出时强制做为静态类的类型(注意customTypeList 还要添加这个类型才能导出)
@@ -63,7 +63,10 @@ namespace PluginSet.PatchToLua.Editor
         [ToLuaGenerateBlackList]
         public static Dictionary<Type, IEnumerable<string>> blackList = new Dictionary<Type, IEnumerable<string>>()
         {
-            {typeof(FileManifest), new [] {"AppendFileInfo"}},
+            {typeof(FileManifest), new []
+            {
+                "AppendFileInfo", "AppendFiles"
+            }},
             {typeof(PatchResourcesManager), new []
             {
                 "PathInfoses", "SetMonoBehaviour", "AddSearchPath", "RemoveSearchPath",
